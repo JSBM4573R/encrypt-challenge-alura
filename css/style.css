@@ -42,8 +42,9 @@ body, html {
 }
 
 .encrypt-decrypt-container{
-    max-width: 350px;
-    max-height: 735px;
+    min-width: 350px;
+    width: 400px;
+    min-height: 735px;
     margin: 20px;
     padding: 20px;
     display: flex;
@@ -179,7 +180,7 @@ button{
 }
 
 .btn-copy{
-    width: 60%;
+    width: 200px;
     background-color: var(--buttons-active-light-bg-color);
 }
 

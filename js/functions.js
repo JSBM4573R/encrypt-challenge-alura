@@ -13,9 +13,11 @@ btnEncriptar.addEventListener('click', function (e) {
     capturaTexto = textoArea.value.split('');
     console.log(capturaTexto);
     encrypt(capturaTexto);
-    console.log(arrayTextoEncriptado.join(''))
+    console.log(arrayTextoEncriptado.join(''));
+    textEncryptDecrypt.innerHTML = arrayTextoEncriptado.join('');
     eventInformation.classList.remove('hide');
     onloadInformation.classList.add('hide');
+    textoArea.value = '';
 });
 
 function encrypt(array) {
@@ -39,3 +41,13 @@ function encrypt(array) {
 window.onload = function(){
     eventInformation.classList.add('hide');
 };
+
+btnCopy.addEventListener('click', function() {
+   var inputFalso = document.createElement('input');
+   inputFalso.setAttribute('value', textEncryptDecrypt.innerHTML)
+   document.body.appendChild(inputFalso);
+   inputFalso.select();
+   document.execCommand('copy');
+   document.body.removeChild(inputFalso);
+   alert("Copiado en el portapales!");
+});
