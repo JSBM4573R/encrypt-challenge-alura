@@ -6,59 +6,198 @@ const onloadInformation = document.querySelector('.onload-information');
 var textEncryptDecrypt = document.querySelector('#text-encrypt-decrypt');
 const btnCopy = document.querySelector('.btn-copy');
 
+/**
+ * function anonima que agrega la clase "hide" al cargar la pagina.
+ */
+window.onload = function () {
+  eventInformation.classList.add('hide');
+};
+
+
 var arrayTextoEncriptado = [];
-var capturaTexto = "";
+var arrayTextoDesencriptado = [];
+var arrayTest = [];
+var bandera = false;
+var capturaTextoArea = "";
 
 btnEncriptar.addEventListener('click', function (e) {
-    e.preventDefault();
-    if (textEncryptDecrypt.textContent.length > 0) {
-        textEncryptDecrypt.innerHTML = '';
-        arrayTextoEncriptado.length = 0;
-        mostrarEncriptacion();
-    }else{
-        mostrarEncriptacion();
-    }
+  capturaTextoArea = textoArea.value.split('');
+  if (textEncryptDecrypt.textContent.length > 0 && capturaTextoArea.length > 0) {
+    textoArea.innerHTML = '';
+    textEncryptDecrypt.innerHTML = '';
+    encrypt(capturaTextoArea);
+    mostrarEncriptacion();
+  } else {
+    encrypt(capturaTextoArea);
+    mostrarEncriptacion();
+  }
 });
 
 function encrypt(array) {
-    for (let i = 0; i < array.length; i++) {
-        if (array[i] == 'e') {
-            arrayTextoEncriptado.push('enter')
-        } else if (array[i] == 'i') {
-            arrayTextoEncriptado.push('imes')
-        } else if (array[i] == 'a') {
-            arrayTextoEncriptado.push('ai')
-        } else if (array[i] == 'o') {
-            arrayTextoEncriptado.push('ober')
-        } else if (array[i] == 'u') {
-            arrayTextoEncriptado.push('ufat')
-        } else {
-            arrayTextoEncriptado.push(array[i]);
-        }
+  for (let i = 0; i < array.length; i++) {
+    if (array[i] == 'e') {
+      arrayTextoEncriptado.push('enter')
+    } else if (array[i] == 'i') {
+      arrayTextoEncriptado.push('imes')
+    } else if (array[i] == 'a') {
+      arrayTextoEncriptado.push('ai')
+    } else if (array[i] == 'o') {
+      arrayTextoEncriptado.push('ober')
+    } else if (array[i] == 'u') {
+      arrayTextoEncriptado.push('ufat')
+    } else {
+      arrayTextoEncriptado.push(array[i]);
     }
+  }
 }
 
-window.onload = function(){
-    eventInformation.classList.add('hide');
-};
-
-btnCopy.addEventListener('click', function() {
-   var inputFalso = document.createElement('input');
-   inputFalso.setAttribute('value', textEncryptDecrypt.innerHTML)
-   document.body.appendChild(inputFalso);
-   inputFalso.select();
-   document.execCommand('copy');
-   document.body.removeChild(inputFalso);
-   alert("Copiado en el portapales!");
+btnCopy.addEventListener('click', function () {
+  var inputFalso = document.createElement('input');
+  inputFalso.setAttribute('value', textEncryptDecrypt.innerHTML)
+  document.body.appendChild(inputFalso);
+  inputFalso.select();
+  document.execCommand('copy');
+  document.body.removeChild(inputFalso);
+  alert("Text Copiado!");
 });
 
+/**
+ * Metodo que muestra el texto encriptado,
+ * remueve la clase "hide" a la clase eventInformation,
+ * agrega la clase "hide" a la clase onloadInformation,
+ * borra el arrayTextoDesencriptado y
+ * limpia el textArea
+ */
 function mostrarEncriptacion() {
-    capturaTexto = textoArea.value.split('');
-    console.log(capturaTexto);
-    encrypt(capturaTexto);
-    console.log(arrayTextoEncriptado.join(''));
-    textEncryptDecrypt.innerHTML = arrayTextoEncriptado.join('');
-    eventInformation.classList.remove('hide');
-    onloadInformation.classList.add('hide');
-    textoArea.value = '';
+  textEncryptDecrypt.innerHTML = arrayTextoEncriptado.join('');
+  eventInformation.classList.remove('hide');
+  onloadInformation.classList.add('hide');
+  arrayTextoEncriptado.length = 0;    //borra el array
+  textoArea.value = '';   //limpia el textArea
 }
+
+/**
+ * Metodo que muestra el texto desencriptado,
+ * remueve la clase "hide" a la clase eventInformation,
+ * agrega la clase "hide" a la clase onloadInformation,
+ * borra el arrayTextoDesencriptado y
+ * borra el array arrayTest
+ */
+function mostrarDesencriptacion() {
+  textEncryptDecrypt.innerHTML = arrayTextoDesencriptado.join('');
+  eventInformation.classList.remove('hide');
+  onloadInformation.classList.add('hide');
+  arrayTextoDesencriptado.length = 0;   //Borra el array
+  arrayTest.length = 0;    //Borra el array
+}
+
+btnDesencriptar.addEventListener('click', function () {
+  capturaTextoArea = textoArea.value.split('');
+  desencriptar(capturaTextoArea);
+  mostrarDesencriptacion();
+});
+
+/**
+ * Metodo que valida si en el array se encuentra la palabra "enter"
+ * Si la encuentra entonces guarda en arrayTextoDesencriptado
+ * la palabra "e" para generar la desencriptacion del texto.
+ * @param {capturaTextoArea} array Coleccion de caracteres de tipo string
+ * @param {[i]} index Indice en donde se encontro la letra "e"
+ */
+function validarE(array, index) {
+  for (let e = 0; e < array.length; e++) {
+    if (array[index] == 'e') {
+      arrayTest.push(array[index])
+    } else if (array[index] == 'n') {
+      arrayTest.push(array[index])
+    } else if (array[index] == 't') {
+      arrayTest.push(array[index])
+    } else if (array[index] == 'e') {
+      arrayTest.push(array[index])
+    } else if (array[index] == 'r') {
+      arrayTest.push(array[index])
+    }
+    index++;
+    if (arrayTest.length == 5  && e < array.length) {
+      var validar = arrayTest.toString().split(',').join('');
+      if (validar == 'enter') {
+        arrayTextoDesencriptado.push('e');
+        console.log(arrayTextoDesencriptado);
+        bandera = true;
+        arrayTest.length = 0;   //Dejo limpio el arrayTest para un proximo test de validacion
+        break;
+      } else {
+        continue;
+      }
+    } else {
+      continue;
+    }
+  }
+}
+
+/**
+ * Metodo que desencripta el texto capturado del textArea
+ * @param {capturaTextoArea} array texto a desencriptar
+ */
+function desencriptar(array) {
+  for (var i = 0; i < array.length; i++) {
+    if (array[i] == 'e') {
+      validarE(array, i);
+      if (bandera == true) {
+        i += 4;
+      } else {
+        alert('Tienes la vocal "e" consecutiva e impide un correcto desencripado del texto, porfavor verifica e intenta nuevamente. Gracias. :v')
+        break;
+      }
+    } else {
+      bandera = false;  //retorno el estado de origen de la bandera a false
+      arrayTextoDesencriptado.push(array[i])
+    }
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// var convertir = array.toString().split(',');
+// console.log(convertir)
+// for (let x = 0; x < convertir.length; x++) {
+//     if (convertir[x] == 'enter') {
+//         arrayTextoDesencriptado.push('e')
+//     } else if (convertir[x] == 'imes') {
+//         arrayTextoDesencriptado.push('i')
+//     } else if (convertir[x] == 'ai') {
+//         arrayTextoDesencriptado.push('a')
+//     } else if (convertir[x] == 'ober') {
+//         arrayTextoDesencriptado.push('o')
+//     } else if (convertir[x] == 'ufat') {
+//         arrayTextoDesencriptado.push('u')
+//     } else {
+//         arrayTextoDesencriptado.push(convertir[x]);
+//     }
+// }
+// console.log(arrayTextoDesencriptado.join(''))
+
+// btnDesencriptar.addEventListener('click', function(){
+//     if (textEncryptDecrypt.textContent.length > 0) {
+//         textEncryptDecrypt.innerHTML = '';
+//         arrayTextoDesencriptado.length = 0;
+//         decrypt(textoArea.value);    
+//         textEncryptDecrypt.innerHTML = arrayTextoDesencriptado.join('');
+//     } else {
+//         decrypt(textoArea.value);    
+//         textEncryptDecrypt.innerHTML = arrayTextoDesencriptado.join('');
+//     }
+// });
