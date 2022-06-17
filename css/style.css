@@ -42,28 +42,26 @@ body, html {
 }
 
 .encrypt-decrypt-container{
-    min-width: 350px;
+    max-width: 350px;
+    max-height: 735px;
     margin: 20px;
     padding: 20px;
     display: flex;
-    flex-direction: column;
-    justify-content: center;
     align-items: center;
+    justify-content: center;
     border: none;
     border-radius: 10px;
     box-shadow: 3px 3px 13px 5px rgb(0 0 0/.13);
 }
 
-.encrypt-decrypt-body{
-    height: 100%;
-    max-width: 350px;
+.onload-information{
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
 }
 
-.encrypt-decrypt-body img{
+.onload-information img{
     height: 250px;
 }
 
@@ -78,10 +76,10 @@ body, html {
     margin-top: 10px;
 }
 
-.show-encrypt{
+.event-information{
+    height: 100%;
     padding: 0 10px;
     text-align: center;
-    font-size: 1.5rem;
     display: flex;
     justify-content: space-between;
     flex-direction: column;
@@ -90,7 +88,8 @@ body, html {
     align-items: center;
 }
 
-.show-encrypt p{
+.event-information p{
+    font-size: 1.5em;
     text-align: justify;
 }
 
@@ -128,7 +127,7 @@ body, html {
 #encrypt{
     padding: 5px;
     width: 100%;
-    min-height: 80%;
+    height: 80%;
 }
 
 .alert-description{
@@ -180,8 +179,7 @@ button{
 }
 
 .btn-copy{
-    width: 50%;
-    margin-bottom: 15px;
+    width: 60%;
     background-color: var(--buttons-active-light-bg-color);
 }
 
@@ -190,4 +188,8 @@ button{
     border: 2px solid var(--buttons-active-light-bg-color);
     background-color: var(--main-bg-color);
     color: var(--textarea-color);
+}
+
+.hide{
+    display: none;
 }

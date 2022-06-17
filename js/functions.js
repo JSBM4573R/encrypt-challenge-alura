@@ -1,16 +1,21 @@
 const btnEncriptar = document.querySelector('.btn-encrypt');
 const btnDesencriptar = document.querySelector('.btn-decrypt');
 var textoArea = document.querySelector('#encrypt');
+const eventInformation = document.querySelector('.event-information');
+const onloadInformation = document.querySelector('.onload-information');
+var textEncryptDecrypt = document.querySelector('#text-encrypt-decrypt');
+const btnCopy = document.querySelector('.btn-copy');
 
 var arrayTextoEncriptado = [];
 var capturaTexto = "";
 
 btnEncriptar.addEventListener('click', function (e) {
-    e.preventDefault();
     capturaTexto = textoArea.value.split('');
     console.log(capturaTexto);
     encrypt(capturaTexto);
     console.log(arrayTextoEncriptado.join(''))
+    eventInformation.classList.remove('hide');
+    onloadInformation.classList.add('hide');
 });
 
 function encrypt(array) {
@@ -30,3 +35,7 @@ function encrypt(array) {
         }
     }
 }
+
+window.onload = function(){
+    eventInformation.classList.add('hide');
+};
