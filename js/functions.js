@@ -10,14 +10,14 @@ var arrayTextoEncriptado = [];
 var capturaTexto = "";
 
 btnEncriptar.addEventListener('click', function (e) {
-    capturaTexto = textoArea.value.split('');
-    console.log(capturaTexto);
-    encrypt(capturaTexto);
-    console.log(arrayTextoEncriptado.join(''));
-    textEncryptDecrypt.innerHTML = arrayTextoEncriptado.join('');
-    eventInformation.classList.remove('hide');
-    onloadInformation.classList.add('hide');
-    textoArea.value = '';
+    e.preventDefault();
+    if (textEncryptDecrypt.textContent.length > 0) {
+        textEncryptDecrypt.innerHTML = '';
+        arrayTextoEncriptado.length = 0;
+        mostrarEncriptacion();
+    }else{
+        mostrarEncriptacion();
+    }
 });
 
 function encrypt(array) {
@@ -51,3 +51,14 @@ btnCopy.addEventListener('click', function() {
    document.body.removeChild(inputFalso);
    alert("Copiado en el portapales!");
 });
+
+function mostrarEncriptacion() {
+    capturaTexto = textoArea.value.split('');
+    console.log(capturaTexto);
+    encrypt(capturaTexto);
+    console.log(arrayTextoEncriptado.join(''));
+    textEncryptDecrypt.innerHTML = arrayTextoEncriptado.join('');
+    eventInformation.classList.remove('hide');
+    onloadInformation.classList.add('hide');
+    textoArea.value = '';
+}
