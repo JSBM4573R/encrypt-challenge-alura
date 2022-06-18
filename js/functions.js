@@ -109,7 +109,7 @@ btnDesencriptar.addEventListener('click', function () {
 /**
  * Metodo que valida si en el array se encuentra la palabra "ai".
  * Si la encuentra entonces, guarda en el arrayTextoDesencriptado
- * la palabra "a" para generar la desencriptacion del texto.
+ * la vocal "a" para generar la desencriptacion del texto.
  * @param {capturaTextoArea} array Coleccion de caracteres alfabeticos de tipo String
  * @param {[i]} index Indice en donde se encontro la letra "a"
  */
@@ -141,8 +141,8 @@ function validarA(array, index) {
 /**
  * Metodo que valida si en el array se encuentra la palabra "enter"
  * Si la encuentra entonces, guarda en el arrayTextoDesencriptado
- * la palabra "e" para generar la desencriptacion del texto.
- * @param {capturaTextoArea} array Coleccion de caracteres alfabeticos de tipo string
+ * la vocal "e" para generar la desencriptacion del texto.
+ * @param {capturaTextoArea} array Coleccion de caracteres alfabeticos de tipo String
  * @param {[i]} index Indice en donde se encontro la letra "e"
  */
 function validarE(array, index) {
@@ -175,10 +175,45 @@ function validarE(array, index) {
   }
 }
 
+/**
+ * Metodo que valida si en el array se encuentra la palabra "imes".
+ * Si la encuentra entonces, guarda en el arrayTextoDesencriptado
+ * la vocal "i" para generar la desencriptacion del texto.
+ * @param {capturaTextoArea} array Coleccion de caracteres alfabeticos de tipo String
+ * @param {[i]} index Indice en donde se encontro la letra "i"
+ */
+function validarI(array, index) {
+  for (let i = 0; i < array.length; i++) {
+    if (array[index] == 'i') {
+      arrayTest.push(array[index])
+    } else if (array[index] == 'm') {
+      arrayTest.push(array[index])
+    } else if (array[index] == 'e') {
+      arrayTest.push(array[index])
+    } else if (array[index] == 's') {
+      arrayTest.push(array[index])
+    }
+    index++;
+    if (arrayTest.length == 4) {
+      var validar = arrayTest.toString().split(',').join('');
+      if (validar == 'imes') {
+        arrayTextoDesencriptado.push('i');
+        bandera = true;
+        arrayTest.length = 0;   //Dejo limpio el arrayTest para un proximo test de validacion
+        break;
+      } else {
+        continue;
+      }
+    } else {
+      continue;
+    }
+  }
+}
+
 
 /**
  * Metodo que desencripta el texto capturado del textArea
- * @param {capturaTextoArea} array Coleccion de caracteres alfabeticos de tipo string
+ * @param {capturaTextoArea} array Coleccion de caracteres alfabeticos de tipo String
  */
 function desencriptar(array) {
   for (var i = 0; i < array.length; i++) {
@@ -194,6 +229,14 @@ function desencriptar(array) {
       validarA(array, i);
       if (bandera == true){
         i++;
+      } else {
+        errorTextoDesencriptar();
+        break;
+      }
+    } else if (array[i] == 'i') {
+      validarI(array, i);
+      if (bandera == true){
+        i+=3;
       } else {
         errorTextoDesencriptar();
         break;
