@@ -212,6 +212,42 @@ function validarI(array, index) {
 
 
 /**
+ * Metodo que valida si en el array se encuentra la palabra "ober".
+ * Si la encuentra entonces, guarda en el arrayTextoDesencriptado
+ * la vocal "o" para generar la desencriptacion del texto.
+ * @param {capturaTextoArea} array Coleccion de caracteres alfabeticos de tipo String
+ * @param {[i]} index Indice en donde se encontro la letra "o"
+ */
+ function validarO(array, index) {
+  for (let i = 0; i < array.length; i++) {
+    if (array[index] == 'o') {
+      arrayTest.push(array[index])
+    } else if (array[index] == 'b') {
+      arrayTest.push(array[index])
+    } else if (array[index] == 'e') {
+      arrayTest.push(array[index])
+    } else if (array[index] == 'r') {
+      arrayTest.push(array[index])
+    }
+    index++;
+    if (arrayTest.length == 4) {
+      var validar = arrayTest.toString().split(',').join('');
+      if (validar == 'ober') {
+        arrayTextoDesencriptado.push('o');
+        bandera = true;
+        arrayTest.length = 0;   //Dejo limpio el arrayTest para un proximo test de validacion
+        break;
+      } else {
+        continue;
+      }
+    } else {
+      continue;
+    }
+  }
+}
+
+
+/**
  * Metodo que desencripta el texto capturado del textArea
  * @param {capturaTextoArea} array Coleccion de caracteres alfabeticos de tipo String
  */
@@ -235,6 +271,14 @@ function desencriptar(array) {
       }
     } else if (array[i] == 'i') {
       validarI(array, i);
+      if (bandera == true){
+        i+=3;
+      } else {
+        errorTextoDesencriptar();
+        break;
+      }
+    } else if (array[i] == 'o') {
+      validarO(array, i);
       if (bandera == true){
         i+=3;
       } else {
