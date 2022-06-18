@@ -218,7 +218,7 @@ function validarI(array, index) {
  * @param {capturaTextoArea} array Coleccion de caracteres alfabeticos de tipo String
  * @param {[i]} index Indice en donde se encontro la letra "o"
  */
- function validarO(array, index) {
+function validarO(array, index) {
   for (let i = 0; i < array.length; i++) {
     if (array[index] == 'o') {
       arrayTest.push(array[index])
@@ -247,6 +247,34 @@ function validarI(array, index) {
 }
 
 
+function validarU(array, index) {
+  for (let u = 0; u < array.length; u++) {
+    if (array[index] == 'u') {
+      arrayTest.push(array[index]);
+    } else if (array[index] == 'f') {
+      arrayTest.push(array[index]);
+    } else if (array[index] == 'a') {
+      arrayTest.push(array[index]);
+    } else if (array[index] == 't') {
+      arrayTest.push(array[index])
+    }
+    index++;
+    if (arrayTest.length == 4) {
+      var validar = arrayTest.toString().split(',').join('')
+      if (validar == 'ufat') {
+        arrayTextoDesencriptado.push('u')
+        bandera = true;
+        arrayTest.length = 0;
+        break;
+      } else {
+        continue;
+      }
+    } else {
+      continue;
+    }
+  }
+}
+
 /**
  * Metodo que desencripta el texto capturado del textArea
  * @param {capturaTextoArea} array Coleccion de caracteres alfabeticos de tipo String
@@ -255,7 +283,7 @@ function desencriptar(array) {
   for (var i = 0; i < array.length; i++) {
     if (array[i] == 'e') {
       validarE(array, i);
-      if (bandera == true) {
+      if (bandera == true){
         i+=4;
       } else {
         errorTextoDesencriptar();
@@ -280,6 +308,14 @@ function desencriptar(array) {
     } else if (array[i] == 'o') {
       validarO(array, i);
       if (bandera == true){
+        i+=3;
+      } else {
+        errorTextoDesencriptar();
+        break;
+      }
+    } else if (array[i] == 'u') {
+      validarU(array, i);
+      if (bandera = true){
         i+=3;
       } else {
         errorTextoDesencriptar();
