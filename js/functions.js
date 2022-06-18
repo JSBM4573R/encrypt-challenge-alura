@@ -7,7 +7,7 @@ var textEncryptDecrypt = document.querySelector('#text-encrypt-decrypt');
 const btnCopy = document.querySelector('.btn-copy');
 
 /**
- * function anonima que agrega la clase "hide" al cargar la pagina.
+ * Funcion anonima que agrega la clase "hide" al cargar la pagina.
  */
 window.onload = function () {
   eventInformation.classList.add('hide');
@@ -25,10 +25,10 @@ btnEncriptar.addEventListener('click', function (e) {
   if (textEncryptDecrypt.textContent.length > 0 && capturaTextoArea.length > 0) {
     textoArea.innerHTML = '';
     textEncryptDecrypt.innerHTML = '';
-    encrypt(capturaTextoArea);
+    encriptar(capturaTextoArea);
     mostrarEncriptacion();
   } else {
-    encrypt(capturaTextoArea);
+    encriptar(capturaTextoArea);
     mostrarEncriptacion();
   }
 });
@@ -39,7 +39,7 @@ btnEncriptar.addEventListener('click', function (e) {
  * en el texto ingresado por "ai", "enter", "imes", "ober", "ufat".
  * @param {capturaTextoArea} array Coleccion de caracteres alfabeticos de tipo string
  */
-function encrypt(array) {
+function encriptar(array) {
   for (let i = 0; i < array.length; i++) {
     if (array[i] == 'e') {
       arrayTextoEncriptado.push('enter')
@@ -246,7 +246,13 @@ function validarO(array, index) {
   }
 }
 
-
+/**
+ * Metodo que valida si en el array se encuentra la palabra "ufat".
+ * Si la encuentra entonces, guarda en el arrayTextoDesencriptado
+ * la vocal "u" para generar la desencriptacion del texto.
+ * @param {capturaTextoArea} array Coleccion de caracteres alfabeticos de tipo String
+ * @param {[i]} index Indice en donde se encontro la letra "u"
+ */
 function validarU(array, index) {
   for (let u = 0; u < array.length; u++) {
     if (array[index] == 'u') {
@@ -336,4 +342,3 @@ function errorTextoDesencriptar() {
   alert('Tienes un error en el texto o la alguna vocal se encuentra consecutiva' +
   ' e impide un correcto desencriptado porfavor verifica e intenta nuevamente. o<°');
 }
-
