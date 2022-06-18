@@ -198,3 +198,49 @@ button{
 .hide{
     display: none;
 }
+
+
+@media screen and (max-width:1200px) {
+    .main-container{
+        width: 100%;
+    }
+}
+
+@media screen and (max-width:450px) {
+    .main-container{
+        width: 100%;
+        padding: 0px;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+    .text-container{
+        width: 320px;
+        min-height: auto;
+        height: 420px;
+        margin-top: 50px;
+        font-size: 1em;
+    }
+    .encrypt-decrypt-container{
+        min-width: 320px;
+        width: 320px;
+        min-height: auto;
+        height: auto;
+        font-size: 1em;
+    }
+    .buttons-container{
+        flex-direction: column;
+    }
+    .btn-encrypt{
+        margin: 0;
+    }
+    .btn-decrypt{
+        margin: 10px auto;
+    }
+    .encrypt-decrypt-container{
+        margin-top: 150px;
+    }
+    .event-information p{
+        margin: 10px auto;
+    }
+}

@@ -340,5 +340,5 @@ function desencriptar(array) {
  */
 function errorTextoDesencriptar() {
   alert('Tienes un error en el texto o la alguna vocal se encuentra consecutiva' +
-  ' e impide un correcto desencriptado porfavor verifica e intenta nuevamente. o<°');
+  ' e impide un correcto desencriptado. Porfavor verifica e intenta nuevamente.');
 }
