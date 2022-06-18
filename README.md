@@ -1,11 +1,17 @@
 # Encriptador de texto
 
 Aplicacion que encripta y desencripta el texto ingresado. [Probar](http://158.101.30.210/Encrypt-Challenge-ONE/)
-<br>
 
+## Desktop version
 <p align="center">
    <img  heigth="500" src="/img/img-encriptador.PNG" alt="imagen del encriptador de texto"/>
 </p>
+
+## mobile version
+<p align="center">
+   <img  src="/img/img-encriptador-resposive.PNG" alt="imagen del encriptador de texto"/>
+</p>
+<br>
 
 ## Descripcion del Challenge
 
@@ -15,7 +21,6 @@ La letra `"i"` es convertida para `"imes"` <br>
 La letra `"a"` es convertida para `"ai"` <br>
 La letra `"o"` es convertida para `"ober"` <br>
 La letra `"u"` es convertida para `"ufat"` <br>
-<br>
 
 ### Requisitos: 
 - Debe funcionar solo con letras minúsculas. <br>
