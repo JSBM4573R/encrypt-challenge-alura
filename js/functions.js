@@ -33,6 +33,12 @@ btnEncriptar.addEventListener('click', function (e) {
   }
 });
 
+
+/**
+ * Metodo que encripta las vocales "a", "e", "i", "o", "u" encontradas 
+ * en el texto ingresado por "ai", "enter", "imes", "ober", "ufat".
+ * @param {capturaTextoArea} array Coleccion de caracteres alfabeticos de tipo string
+ */
 function encrypt(array) {
   for (let i = 0; i < array.length; i++) {
     if (array[i] == 'e') {
@@ -61,6 +67,7 @@ btnCopy.addEventListener('click', function () {
   alert("Text Copiado!");
 });
 
+
 /**
  * Metodo que muestra el texto encriptado,
  * remueve la clase "hide" a la clase eventInformation,
@@ -75,6 +82,7 @@ function mostrarEncriptacion() {
   arrayTextoEncriptado.length = 0;    //borra el array
   textoArea.value = '';   //limpia el textArea
 }
+
 
 /**
  * Metodo que muestra el texto desencriptado,
@@ -97,11 +105,44 @@ btnDesencriptar.addEventListener('click', function () {
   mostrarDesencriptacion();
 });
 
+
+/**
+ * Metodo que valida si en el array se encuentra la palabra "ai".
+ * Si la encuentra entonces, guarda en el arrayTextoDesencriptado
+ * la palabra "a" para generar la desencriptacion del texto.
+ * @param {capturaTextoArea} array Coleccion de caracteres alfabeticos de tipo String
+ * @param {[i]} index Indice en donde se encontro la letra "a"
+ */
+function validarA(array, index) {
+  for (let a = 0; a < array.length; a++) {
+    if (array[index] == 'a'){
+      arrayTest.push(array[index]);
+    } else if (array[index] == 'i') {
+      arrayTest.push(array[index]);
+    }
+    index ++;
+    if(arrayTest.length == 2) {
+      var validar = arrayTest.toString().split(',').join('')
+      if (validar == 'ai') {
+        arrayTextoDesencriptado.push('a');
+        bandera = true;
+        arrayTest.length = 0;   //Dejo limpio el arrayTest para un proximo test de validacion
+        break;
+      } else {
+        continue;
+      }
+    } else {
+      continue;
+    }
+  }
+}
+
+
 /**
  * Metodo que valida si en el array se encuentra la palabra "enter"
- * Si la encuentra entonces guarda en arrayTextoDesencriptado
+ * Si la encuentra entonces, guarda en el arrayTextoDesencriptado
  * la palabra "e" para generar la desencriptacion del texto.
- * @param {capturaTextoArea} array Coleccion de caracteres de tipo string
+ * @param {capturaTextoArea} array Coleccion de caracteres alfabeticos de tipo string
  * @param {[i]} index Indice en donde se encontro la letra "e"
  */
 function validarE(array, index) {
@@ -118,11 +159,10 @@ function validarE(array, index) {
       arrayTest.push(array[index])
     }
     index++;
-    if (arrayTest.length == 5  && e < array.length) {
+    if (arrayTest.length == 5) {
       var validar = arrayTest.toString().split(',').join('');
       if (validar == 'enter') {
         arrayTextoDesencriptado.push('e');
-        console.log(arrayTextoDesencriptado);
         bandera = true;
         arrayTest.length = 0;   //Dejo limpio el arrayTest para un proximo test de validacion
         break;
@@ -135,69 +175,42 @@ function validarE(array, index) {
   }
 }
 
+
 /**
  * Metodo que desencripta el texto capturado del textArea
- * @param {capturaTextoArea} array texto a desencriptar
+ * @param {capturaTextoArea} array Coleccion de caracteres alfabeticos de tipo string
  */
 function desencriptar(array) {
   for (var i = 0; i < array.length; i++) {
     if (array[i] == 'e') {
       validarE(array, i);
       if (bandera == true) {
-        i += 4;
+        i+=4;
       } else {
-        alert('Tienes la vocal "e" consecutiva e impide un correcto desencripado del texto, porfavor verifica e intenta nuevamente. Gracias. :v')
+        errorTextoDesencriptar();
+        break;
+      }
+    } else if (array[i] == 'a') {
+      validarA(array, i);
+      if (bandera == true){
+        i++;
+      } else {
+        errorTextoDesencriptar();
         break;
       }
     } else {
-      bandera = false;  //retorno el estado de origen de la bandera a false
-      arrayTextoDesencriptado.push(array[i])
+      bandera = false;
+      arrayTextoDesencriptado.push(array[i]);
     }
   }
 }
 
+/**
+ * Metodo que ejecuta un alert al usuario cuando ingresa un texto que 
+ * impide realizar la descencriptacion.
+ */
+function errorTextoDesencriptar() {
+  alert('Tienes un error en el texto o la alguna vocal se encuentra consecutiva' +
+  ' e impide un correcto desencriptado porfavor verifica e intenta nuevamente. o<°');
+}
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// var convertir = array.toString().split(',');
-// console.log(convertir)
-// for (let x = 0; x < convertir.length; x++) {
-//     if (convertir[x] == 'enter') {
-//         arrayTextoDesencriptado.push('e')
-//     } else if (convertir[x] == 'imes') {
-//         arrayTextoDesencriptado.push('i')
-//     } else if (convertir[x] == 'ai') {
-//         arrayTextoDesencriptado.push('a')
-//     } else if (convertir[x] == 'ober') {
-//         arrayTextoDesencriptado.push('o')
-//     } else if (convertir[x] == 'ufat') {
-//         arrayTextoDesencriptado.push('u')
-//     } else {
-//         arrayTextoDesencriptado.push(convertir[x]);
-//     }
-// }
-// console.log(arrayTextoDesencriptado.join(''))
-
-// btnDesencriptar.addEventListener('click', function(){
-//     if (textEncryptDecrypt.textContent.length > 0) {
-//         textEncryptDecrypt.innerHTML = '';
-//         arrayTextoDesencriptado.length = 0;
-//         decrypt(textoArea.value);    
-//         textEncryptDecrypt.innerHTML = arrayTextoDesencriptado.join('');
-//     } else {
-//         decrypt(textoArea.value);    
-//         textEncryptDecrypt.innerHTML = arrayTextoDesencriptado.join('');
-//     }
-// });
