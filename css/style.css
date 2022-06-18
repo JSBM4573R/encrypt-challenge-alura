@@ -68,6 +68,7 @@ body {
 
 .onload-information img{
     height: 250px;
+    animation: movimiento 7s linear infinite;
 }
 
 .show-text{
@@ -243,4 +244,17 @@ button{
     .event-information p{
         margin: 10px auto;
     }
+}
+
+@keyframes movimiento {
+    0%{
+        transform: translateY(0);
+    }
+    50%{
+        transform: translateY(10px);
+    }
+    100%{
+        transform: translateY(0);
+    }
+    
 }
