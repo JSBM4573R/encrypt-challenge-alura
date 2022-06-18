@@ -7,9 +7,9 @@ Aplicacion que encripta y desencripta el texto ingresado. [Probar](http://158.10
    <img  heigth="500" src="/img/img-encriptador.PNG" alt="imagen del encriptador de texto"/>
 </p>
 
-## mobile version
+## Mobile version
 <p align="center">
-   <img  src="/img/img-encriptador-resposive.PNG" alt="imagen del encriptador de texto"/>
+   <img  src="/img/img-encriptador-responsive.PNG" alt="imagen del encriptador de texto"/>
 </p>
 <br>
 
