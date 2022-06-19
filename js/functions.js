@@ -110,6 +110,7 @@ function mostrarDesencriptacion() {
 }
 
 btnDesencriptar.addEventListener('click', function () {
+  capturaTextoArea = textoArea.value.split('');
   if (capturaTextoArea.length == 0){
     showMessageWarning('Porfavor ingresa el texto a descencriptar')
   } else {
