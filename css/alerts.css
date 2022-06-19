@@ -4,7 +4,6 @@
     padding: 20px 40px;
     min-width: auto;
     right: 0;
-    /* top: 43px; */
     top: 15px;
     border-left: 8px solid #ffa502;
     border-radius: 5px;
@@ -97,5 +96,14 @@
     }
     100%{
         transform: translateX(100%);
+    }
+}
+
+@media screen and (max-width:450px) {
+    .alert{
+        top: 50px;
+        max-width: 280px;
+        font-size: .85em;
+        padding: 10px 17px;
     }
 }

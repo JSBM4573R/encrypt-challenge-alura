@@ -21,19 +21,18 @@ var capturaTextoArea = "";
 
 btnEncriptar.addEventListener('click', function (e) {
   capturaTextoArea = textoArea.value.split('');
+  encriptar(capturaTextoArea);
   if(validarTexto(capturaTextoArea)){
     showMessageWarning('No se permite caracteres en mayuscula y/o acentos, porfavor verifica e intenta nuevamente. Gracias =D');
   }else{
     if (textEncryptDecrypt.textContent.length > 0 && capturaTextoArea.length > 0) {
       textoArea.innerHTML = '';
       textEncryptDecrypt.innerHTML = '';
-      encriptar(capturaTextoArea);
       mostrarEncriptacion();
     } else {
       if(capturaTextoArea.length == 0){
         showMessageWarning('Porfavor ingresa el texto a encriptar')
       } else {
-        encriptar(capturaTextoArea);
         mostrarEncriptacion();
       }
       
@@ -95,27 +94,32 @@ function mostrarEncriptacion() {
 
 /**
  * Metodo que muestra el texto desencriptado,
+ * valida si existe error en la desencriptacion,
  * remueve la clase "hide" a la clase eventInformation,
  * agrega la clase "hide" a la clase onloadInformation,
  * borra el arrayTextoDesencriptado y
  * borra el array arrayTest
+ * muestra alertas personalizadas
  */
 function mostrarDesencriptacion() {
-  textEncryptDecrypt.innerHTML = arrayTextoDesencriptado.join('');
-  eventInformation.classList.remove('hide');
-  onloadInformation.classList.add('hide');
-  arrayTextoDesencriptado.length = 0;   //Borra el array
-  arrayTest.length = 0;    //Borra el array
-  showMessageSuccess('Texto desencriptado correctamente!');
+  if (arrayTextoDesencriptado.length==0 || textEncryptDecrypt.textContent.length==0){
+    showMessageWarning('El texto a desenciptar tiene que contener sintaxis de encriptado. Verifica encriptando el texto nuevamente.')
+  } else {
+    textEncryptDecrypt.innerHTML = arrayTextoDesencriptado.join('');
+    eventInformation.classList.remove('hide');
+    onloadInformation.classList.add('hide');
+    arrayTextoDesencriptado.length = 0;   //Borra el array
+    arrayTest.length = 0;    //Borra el array
+    showMessageSuccess('Texto desencriptado correctamente!');
+  }
 }
 
 btnDesencriptar.addEventListener('click', function () {
   capturaTextoArea = textoArea.value.split('');
+  desencriptar(capturaTextoArea);
   if (capturaTextoArea.length == 0){
     showMessageWarning('Porfavor ingresa el texto a descencriptar')
   } else {
-    capturaTextoArea = textoArea.value.split('');
-    desencriptar(capturaTextoArea);
     mostrarDesencriptacion();
   }
 });
@@ -345,6 +349,7 @@ function desencriptar(array) {
     } else {
       bandera = false;
       arrayTextoDesencriptado.push(array[i]);
+      arrayTest.length=0;
     }
   }
 }
