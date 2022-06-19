@@ -95,8 +95,8 @@ body {
 }
 
 .event-information p{
-    font-size: 1.5em;
-    text-align: justify;
+    font-size: 1.8em;
+    text-align: center;
 }
 
 .text-container{
@@ -114,7 +114,7 @@ body {
     color: var(--textarea-color);
     border: none;
     outline: none;
-    text-align: justify;
+    
 }
 
 .buttons-text-container{
@@ -251,7 +251,7 @@ button{
         transform: translateY(0);
     }
     50%{
-        transform: translateY(10px);
+        transform: translateY(15px);
     }
     100%{
         transform: translateY(0);

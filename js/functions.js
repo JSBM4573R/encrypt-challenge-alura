@@ -13,7 +13,6 @@ window.onload = function () {
   eventInformation.classList.add('hide');
 };
 
-
 var arrayTextoEncriptado = [];
 var arrayTextoDesencriptado = [];
 var arrayTest = [];
@@ -23,7 +22,7 @@ var capturaTextoArea = "";
 btnEncriptar.addEventListener('click', function (e) {
   capturaTextoArea = textoArea.value.split('');
   if(validarTexto(capturaTextoArea)){
-    alert(`No se permite caracteres en mayuscula y/o acentos, porfavor verifica e intenta nuevamente. Gracias =D`)
+    showMessageWarning('No se permite caracteres en mayuscula y/o acentos, porfavor verifica e intenta nuevamente. Gracias =D');
   }else{
     if (textEncryptDecrypt.textContent.length > 0 && capturaTextoArea.length > 0) {
       textoArea.innerHTML = '';
@@ -31,8 +30,13 @@ btnEncriptar.addEventListener('click', function (e) {
       encriptar(capturaTextoArea);
       mostrarEncriptacion();
     } else {
-      encriptar(capturaTextoArea);
-      mostrarEncriptacion();
+      if(capturaTextoArea.length == 0){
+        showMessageWarning('Porfavor ingresa el texto a encriptar')
+      } else {
+        encriptar(capturaTextoArea);
+        mostrarEncriptacion();
+      }
+      
     }
   }
 });
@@ -68,7 +72,7 @@ btnCopy.addEventListener('click', function () {
   inputFalso.select();
   document.execCommand('copy');
   document.body.removeChild(inputFalso);
-  alert("Text Copiado!");
+  showMessageSuccess('¡Copiado!');
 });
 
 
@@ -85,6 +89,7 @@ function mostrarEncriptacion() {
   onloadInformation.classList.add('hide');
   arrayTextoEncriptado.length = 0;    //borra el array
   textoArea.value = '';   //limpia el textArea
+  showMessageSuccess('Texto encriptado correctamente!');
 }
 
 
@@ -101,12 +106,17 @@ function mostrarDesencriptacion() {
   onloadInformation.classList.add('hide');
   arrayTextoDesencriptado.length = 0;   //Borra el array
   arrayTest.length = 0;    //Borra el array
+  showMessageSuccess('Texto desencriptado correctamente!');
 }
 
 btnDesencriptar.addEventListener('click', function () {
-  capturaTextoArea = textoArea.value.split('');
-  desencriptar(capturaTextoArea);
-  mostrarDesencriptacion();
+  if (capturaTextoArea.length == 0){
+    showMessageWarning('Porfavor ingresa el texto a descencriptar')
+  } else {
+    capturaTextoArea = textoArea.value.split('');
+    desencriptar(capturaTextoArea);
+    mostrarDesencriptacion();
+  }
 });
 
 
@@ -343,7 +353,7 @@ function desencriptar(array) {
  * impide realizar la descencriptacion.
  */
 function errorTextoDesencriptar() {
-  alert('Tienes un error en el texto o la alguna vocal se encuentra consecutiva' +
+  showMessageWarning('Tienes un error en el texto o la alguna vocal se encuentra consecutiva' +
   ' e impide un correcto desencriptado. Porfavor verifica e intenta nuevamente.');
 }
 

@@ -7,12 +7,21 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="shortcut icon" href="img/JSBM.png" type="logo de Juan Sebastian :D">
   <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/alerts.css">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css" rel="stylesheet">
   <title>Encryptor Challenge</title>
 </head>
 
 <body>
   <img class="logo-alura" src="img/alura.png" alt="Logo Alura">
   <div class="main-container">
+    <div class="alert hide">
+      <span class="fas fa-exclamation-circle"></span>
+      <div class="msg"></div>
+      <div class="close-btn">
+        <span class="fas fa-times"></span>
+      </div>
+    </div>
     <div class="text-container">
       <textarea name="text-encrypt" id="encrypt" cols="30" rows="10" placeholder="Ingrese el texto aquí"></textarea>
       <div class="buttons-text-container">
@@ -42,7 +51,15 @@
     </div>
   </div>
   
+  <!-- <script>
+    (function(){
+      'use strict'
+      var war = document.querySelector('.alert');
+      war.style = 'display:none'
+    })();
+  </script> -->
   <script src="js/functions.js"></script>
+  <script src="js/alerts.js"></script>
 
 </body>
 
