@@ -102,7 +102,7 @@
 @media screen and (max-width:450px) {
     .alert{
         top: 50px;
-        max-width: 280px;
+        max-width: 270px;
         font-size: .85em;
         padding: 10px 17px;
     }
