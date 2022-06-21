@@ -35,7 +35,11 @@ btnEncriptar.addEventListener('click', function(){
     if(validarTexto(capturaTextoArea)){
       showMessageWarning('No se permite caracteres en mayuscula y/o acentos, porfavor verifica e intenta nuevamente. Gracias =D');
     }else{
-      mostrarEncriptacion();
+      if(validarExistenciaVocales(capturaTextoArea)==false){
+        showMessageWarning('Porfavor ingresa un texto valido. Gracias =D');
+      }else{
+        mostrarEncriptacion();
+      }
     }
   }
 });
