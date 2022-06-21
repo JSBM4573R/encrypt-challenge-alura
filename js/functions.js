@@ -33,7 +33,7 @@ btnEncriptar.addEventListener('click', function(){
     showMessageWarning('Porfavor ingresa el texto a encriptar')
   }else{
     if(validarTexto(capturaTextoArea)){
-      showMessageWarning('No se permite caracteres en mayuscula y/o acentos, porfavor verifica e intenta nuevamente. Gracias =D');
+      showMessageWarning('No se permite letras en mayuscula, números y/o acentos, porfavor verifica e intenta nuevamente. Gracias =D');
     }else{
       if(validarExistenciaVocales(capturaTextoArea)==false){
         showMessageWarning('Porfavor ingresa un texto valido. Gracias =D');
@@ -90,9 +90,14 @@ btnDesencriptar.addEventListener('click', function(){
     showMessageWarning('Porfavor ingresa el texto a desencriptar')
   }else{
     if(validarTexto(capturaTextoArea)){
-      showMessageWarning('No se permite caracteres en mayuscula y/o acentos, porfavor verifica e intenta nuevamente. Gracias =D');
+      showMessageWarning('No se permite letras en mayuscula, números y/o acentos, porfavor verifica e intenta nuevamente. Gracias =D');
     }else{
-      mostrarDesencriptacion();
+      if(validarSintaxis(capturaTextoArea)==false){
+        showMessageWarning('El texto a desencriptar es invalido. Intenta primero encriptar el texto. Gracias =D');
+      }else{
+        mostrarDesencriptacion();
+      }
+      
     }
   }
 });
@@ -135,6 +140,16 @@ function validarTexto(texto) {
  * @param {capturaTextoArea} texto 
  * @returns true si existen vocales.
  */
- function validarExistenciaVocales(texto) {
+function validarExistenciaVocales(texto) {
   return /[aeiou]/gm.test(texto)
+}
+
+/**
+ * Metodo que valida si existe parametros de encriptado para poder desencriptar
+ * correctamente. "ai", "enter", "imes", "ober", "ufat"
+ * @param {capturaTextoArea} texto 
+ * @returns true si existen parametros
+ */
+function validarSintaxis(texto) {
+  return /(ai)|(enter)|(imes)|(ober)|(ufat)/gm.test(texto);
 }
