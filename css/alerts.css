@@ -99,6 +99,22 @@
     }
 }
 
+@media screen and (max-width:1160px) {
+    .alert{
+        top: 45px;
+        max-width: 580px;
+        padding: 12px 17px;
+    }
+}
+
+@media screen and (max-width:690px) {
+    .alert{
+        top: 45px;
+        max-width: 350px;
+        padding: 12px 17px;
+    }
+}
+
 @media screen and (max-width:450px) {
     .alert{
         top: 50px;
