@@ -27,25 +27,79 @@ btnCopy.addEventListener('click', function () {
 });
 
 
+btnEncriptar.addEventListener('click', function(){
+  capturaTextoArea = textoArea.value;
+  if(capturaTextoArea.length==0){
+    showMessageWarning('Porfavor ingresa el texto a encriptar')
+  }else{
+    mostrarEncriptacion();
+  }
+});
 
 /**
- * Metodo que valida si existen vocales.
- * @param {capturaTextoArea} texto 
- * @returns true si existen vocales.
+ * Metodo que muestra el texto encriptado.
  */
-function validarExistenciaVocales(texto) {
-  return /[aeiou]/gm.test(texto)
+function mostrarEncriptacion() {
+  capturaTextoArea = textoArea.value;
+  textEncryptDecrypt.innerHTML = encriptar(capturaTextoArea);
+  eventInformation.classList.remove('hide');
+  onloadInformation.classList.add('hide');
+  textoArea.value = ''; 
+  showMessageSuccess('Texto encriptado correctamente!');
 }
 
+/**
+ * Metodo que encripta las vocales "a", "e", "i", "o", "u" encontradas 
+ * en el texto ingresado por "ai", "enter", "imes", "ober", "ufat".
+ * @param {capturaTextoArea} texto ingresado por el usuario.
+ * @returns textoEncriptado
+ */
 function encriptar(texto) {
-  const vocales = ['ai','enter','imes','ober','ufat'];
-  const patronesRegExp = [/a/gm,/e/gm,/i/gm,/o/gm,/u/gm];
-  for (let i = 0; i < vocales.length; i++) {
-    texto = texto.replace(patronesRegExp[i], vocales[i]);
+  var texto = texto.split('');
+  var textoEncriptado = [];
+  for (let i = 0; i < texto.length; i++) {
+    if (texto[i] == 'e') {
+      textoEncriptado.push('enter')
+    } else if (texto[i] == 'i') {
+      textoEncriptado.push('imes')
+    } else if (texto[i] == 'a') {
+      textoEncriptado.push('ai')
+    } else if (texto[i] == 'o') {
+      textoEncriptado.push('ober')
+    } else if (texto[i] == 'u') {
+      textoEncriptado.push('ufat')
+    } else {
+      textoEncriptado.push(texto[i]);
+    }
   }
-  return texto;
+  return textoEncriptado.join('');
 }
 
+
+btnDesencriptar.addEventListener('click', function(){
+  capturaTextoArea = textoArea.value;
+  if(capturaTextoArea.length==0){
+    showMessageWarning('Porfavor ingresa el texto a desencriptar')
+  }else{
+    mostrarDesencriptacion();
+  }
+});
+
+/**
+ * Metodo que muestra el texto desencriptado.
+ */
+function mostrarDesencriptacion() {
+  textEncryptDecrypt.innerHTML = desencriptar(capturaTextoArea);
+  eventInformation.classList.remove('hide');
+  onloadInformation.classList.add('hide');
+  showMessageSuccess('Texto desencriptado correctamente!');
+}
+
+/**
+ * Metodo que desencripta el texto ingresado por el usuario.
+ * @param {capturaTextoArea} texto encriptado por el usuario.
+ * @returns texto desencriptado
+ */
 function desencriptar(texto) {
   const vocales = ['a','e','i','o','u'];
   const patronesRegExp = [/(ai)/gm,/(enter)/gm,/(imes)/gm,/(ober)/gm,/(ufat)/gm];
@@ -55,22 +109,20 @@ function desencriptar(texto) {
   return texto;
 }
 
-
-
 /**
- * Metodo que ejecuta un alert al usuario cuando ingresa un texto que 
- * impide realizar la descencriptacion.
- */
- function errorTextoDesencriptar() {
-  showMessageWarning('Tienes un error en el texto o la alguna vocal se encuentra consecutiva' +
-  ' e impide un correcto desencriptado. Porfavor verifica e intenta nuevamente.');
-}
-
-/**
- * Metodo que valida si existen acentos o letras capitalizadas.
+ * Metodo que valida si existen acentos, letras capitalizadas o números.
  * @param {capturaTextoArea} texto 
  * @returns true si encuentra acentos o mayusculas o numeros.
  */
 function validarTexto(texto) {
   return /[A-Z\u00C0-\u017F\d]/gm.test(texto);
+}
+
+/**
+ * Metodo que valida si existen vocales.
+ * @param {capturaTextoArea} texto 
+ * @returns true si existen vocales.
+ */
+ function validarExistenciaVocales(texto) {
+  return /[aeiou]/gm.test(texto)
 }
