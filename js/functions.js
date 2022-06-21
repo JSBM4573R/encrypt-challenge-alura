@@ -22,20 +22,26 @@ var capturaTextoArea = "";
 btnEncriptar.addEventListener('click', function (e) {
   capturaTextoArea = textoArea.value.split('');
   encriptar(capturaTextoArea);
-  if(validarTexto(capturaTextoArea)){
-    showMessageWarning('No se permite caracteres en mayuscula y/o acentos, porfavor verifica e intenta nuevamente. Gracias =D');
+  capturaTextoArea = capturaTextoArea.join('');
+  if(validarExistenciaVocales(capturaTextoArea)==false){
+    showMessageWarning('Porfavor ingresa un texto valido a encriptar. Gracias =D');
+    arrayTextoEncriptado.length=0;
   }else{
-    if (textEncryptDecrypt.textContent.length > 0 && capturaTextoArea.length > 0) {
-      textoArea.innerHTML = '';
-      textEncryptDecrypt.innerHTML = '';
-      mostrarEncriptacion();
-    } else {
-      if(capturaTextoArea.length == 0){
-        showMessageWarning('Porfavor ingresa el texto a encriptar')
-      } else {
+    if(validarTexto(capturaTextoArea)){
+      showMessageWarning('No se permite letras en mayuscula, numeros y/o acentos, porfavor verifica e intenta nuevamente. Gracias =D');
+      arrayTextoEncriptado.length=0;
+    }else{
+      if (textEncryptDecrypt.textContent.length > 0 && capturaTextoArea.length > 0) {
+        textoArea.innerHTML = '';
+        textEncryptDecrypt.innerHTML = '';
         mostrarEncriptacion();
+      } else {
+        if(capturaTextoArea.length == 0){
+          showMessageWarning('Porfavor ingresa el texto a encriptar')
+        } else {
+          mostrarEncriptacion();
+        }
       }
-      
     }
   }
 });
@@ -102,13 +108,17 @@ function mostrarEncriptacion() {
  * muestra alertas personalizadas
  */
 function mostrarDesencriptacion() {
-  if (arrayTextoDesencriptado.length==0 || textEncryptDecrypt.textContent.length==0){
-    showMessageWarning('El texto a desenciptar tiene que contener sintaxis de encriptado. Verifica encriptando el texto nuevamente.')
+  arrayTextoDesencriptado = arrayTextoDesencriptado.join('')
+  if (arrayTextoDesencriptado.length==0 || textEncryptDecrypt.textContent.length==0 || validarExistenciaVocales(arrayTextoDesencriptado)==false){
+    showMessageWarning('El texto a desencriptar tiene que contener sintaxis de encriptado. Verifica encriptando el texto nuevamente.')
+    // eventInformation.classList.remove('hide');
+    // onloadInformation.classList.add('hide');
+    arrayTextoDesencriptado = [];
   } else {
-    textEncryptDecrypt.innerHTML = arrayTextoDesencriptado.join('');
+    textEncryptDecrypt.innerHTML = arrayTextoDesencriptado
     eventInformation.classList.remove('hide');
     onloadInformation.classList.add('hide');
-    arrayTextoDesencriptado.length = 0;   //Borra el array
+    arrayTextoDesencriptado = [];   //Convierte a array nuevamente
     arrayTest.length = 0;    //Borra el array
     showMessageSuccess('Texto desencriptado correctamente!');
   }
@@ -369,5 +379,9 @@ function errorTextoDesencriptar() {
  * @returns true si encuentra acentos o mayusculas.
  */
 function validarTexto(texto) {
-  return /[A-Z\u00C0-\u017F]/gm.test(texto);
+  return /[A-Z\u00C0-\u017F\d]/gm.test(texto);
+}
+
+function validarExistenciaVocales(texto) {
+  return /[aeiou]/gm.test(texto)
 }
