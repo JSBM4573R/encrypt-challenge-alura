@@ -31,16 +31,12 @@ btnEncriptar.addEventListener('click', function(){
   capturaTextoArea = textoArea.value;
   if(capturaTextoArea.length==0){
     showMessageWarning('Porfavor ingresa el texto a encriptar')
+  }else if(validarTexto(capturaTextoArea)){
+    showMessageWarning('No se permite letras en mayuscula, números y/o acentos, porfavor verifica e intenta nuevamente. Gracias =D');
+  }else if(validarExistenciaVocales(capturaTextoArea)==false){
+    showMessageWarning('Porfavor ingresa un texto valido. Gracias =D');
   }else{
-    if(validarTexto(capturaTextoArea)){
-      showMessageWarning('No se permite letras en mayuscula, números y/o acentos, porfavor verifica e intenta nuevamente. Gracias =D');
-    }else{
-      if(validarExistenciaVocales(capturaTextoArea)==false){
-        showMessageWarning('Porfavor ingresa un texto valido. Gracias =D');
-      }else{
-        mostrarEncriptacion();
-      }
-    }
+    mostrarEncriptacion();
   }
 });
 
@@ -88,18 +84,13 @@ btnDesencriptar.addEventListener('click', function(){
   capturaTextoArea = textoArea.value;
   if(capturaTextoArea.length==0){
     showMessageWarning('Porfavor ingresa el texto a desencriptar')
+  }else if(validarTexto(capturaTextoArea)){
+    showMessageWarning('No se permite letras en mayuscula, números y/o acentos, porfavor verifica e intenta nuevamente. Gracias =D');
+  }else if(validarSintaxis(capturaTextoArea)==false){
+    showMessageWarning('El texto a desencriptar es invalido. Intenta primero encriptando el texto. Gracias =D');
   }else{
-    if(validarTexto(capturaTextoArea)){
-      showMessageWarning('No se permite letras en mayuscula, números y/o acentos, porfavor verifica e intenta nuevamente. Gracias =D');
-    }else{
-      if(validarSintaxis(capturaTextoArea)==false){
-        showMessageWarning('El texto a desencriptar es invalido. Intenta primero encriptando el texto. Gracias =D');
-      }else{
-        mostrarDesencriptacion();
-      }
-      
-    }
-  }
+    mostrarDesencriptacion();
+  }   
 });
 
 /**
