@@ -93,7 +93,7 @@ btnDesencriptar.addEventListener('click', function(){
       showMessageWarning('No se permite letras en mayuscula, números y/o acentos, porfavor verifica e intenta nuevamente. Gracias =D');
     }else{
       if(validarSintaxis(capturaTextoArea)==false){
-        showMessageWarning('El texto a desencriptar es invalido. Intenta primero encriptar el texto. Gracias =D');
+        showMessageWarning('El texto a desencriptar es invalido. Intenta primero encriptando el texto. Gracias =D');
       }else{
         mostrarDesencriptacion();
       }
