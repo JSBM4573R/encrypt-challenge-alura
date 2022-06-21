@@ -89,7 +89,11 @@ btnDesencriptar.addEventListener('click', function(){
   if(capturaTextoArea.length==0){
     showMessageWarning('Porfavor ingresa el texto a desencriptar')
   }else{
-    mostrarDesencriptacion();
+    if(validarTexto(capturaTextoArea)){
+      showMessageWarning('No se permite caracteres en mayuscula y/o acentos, porfavor verifica e intenta nuevamente. Gracias =D');
+    }else{
+      mostrarDesencriptacion();
+    }
   }
 });
 
