@@ -376,12 +376,17 @@ function errorTextoDesencriptar() {
 /**
  * Metodo que valida si existen acentos o letras capitalizadas.
  * @param {capturaTextoArea} texto 
- * @returns true si encuentra acentos o mayusculas.
+ * @returns true si encuentra acentos o mayusculas o numeros.
  */
 function validarTexto(texto) {
   return /[A-Z\u00C0-\u017F\d]/gm.test(texto);
 }
 
+/**
+ * Metodo que valida si existen vocales.
+ * @param {capturaTextoArea} texto 
+ * @returns true si existen vocales.
+ */
 function validarExistenciaVocales(texto) {
   return /[aeiou]/gm.test(texto)
 }
