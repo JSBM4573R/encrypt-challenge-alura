@@ -1,6 +1,6 @@
 # Encriptador de texto
 
-Aplicacion que encripta y desencripta el texto ingresado. [Probar](http://158.101.30.210/encrypt-challenge-alura/)
+Aplicación que encripta y desencripta el texto ingresado. [Probar](http://158.101.30.210/encrypt-challenge-alura/)
 
 ## Desktop version
 <p align="center">
