@@ -4,12 +4,12 @@ Aplicación que encripta y desencripta el texto ingresado. [Probar](http://158.1
 
 ## Desktop version
 <p align="center">
-   <img  heigth="500" src="/img/img-encriptador.PNG" alt="imagen del encriptador de texto"/>
+   <img  height="400" src="/img/img-encriptador.PNG" alt="imagen del encriptador de texto"/>
 </p>
 
 ## Mobile version
 <p align="center">
-   <img  src="/img/img-encriptador-responsive.PNG" alt="imagen del encriptador de texto"/>
+   <img height="390" src="/img/img-encriptador-responsive.PNG" alt="imagen del encriptador de texto"/>
 </p>
 <br>
 
